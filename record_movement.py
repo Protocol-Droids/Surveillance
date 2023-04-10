@@ -27,7 +27,6 @@ cap = cv2.VideoCapture(0)
 # initialize the first frame
 _, frame1 = cap.read()
 gray1 = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
-message_sent = False
 last_email_time = time.time() # initialize last email time
 while True:
     # get the current date and time
@@ -60,9 +59,8 @@ while True:
         cv2.imwrite(new_file_name + ".jpg", frame2)
         #break
         current_time = time.time()
-        if message_sent is not True and current_time - last_email_time >= 3600:
+        if current_time - last_email_time >= 3600:
             send_mail('Movement Detected')
-            message_sent = True
             last_email_time = current_time
     
     # update the previous frame
