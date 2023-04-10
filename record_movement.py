@@ -68,6 +68,13 @@ while True:
     # update the previous frame
     gray1 = gray2
 
+
+    # display the frame
+    cv2.imshow('Preview', frame2)
+
+    # wait for key press and exit if 'q' is pressed
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 # release the camera and close the window
-#cap.release()
-#cv2.destroyAllWindows()
+cap.release()
+cv2.destroyAllWindows()
