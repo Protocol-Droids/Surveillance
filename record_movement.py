@@ -1,7 +1,25 @@
 import cv2
 import datetime
+import time
 
+import smtplib
+from email.mime.text import MIMEText
+from email.utils import formataddr
 
+def send_mail(message = 'This is a test email.', recipient_email = 'martin.arthur.andersen@gmail.com', subject = 'Email from bot'):
+    sender_email = 'bot@nettking.no'
+    sender_name = 'Nettking Surveillance Bot'
+    msg = MIMEText(message)
+    msg['From'] = formataddr((sender_name, sender_email))
+    msg['To'] = recipient_email
+    msg['Subject'] = subject
+
+    with smtplib.SMTP('smtp.proisp.no', 587) as smtp:
+        smtp.ehlo()
+        smtp.starttls()
+        smtp.ehlo()
+        smtp.login(sender_email, 'JabbaJabbaHei1990')
+        smtp.sendmail(sender_email, recipient_email, msg.as_string())
 
 # open the default camera (index 0)
 cap = cv2.VideoCapture(0)
@@ -9,7 +27,8 @@ cap = cv2.VideoCapture(0)
 # initialize the first frame
 _, frame1 = cap.read()
 gray1 = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
-
+message_sent = False
+last_email_time = time.time() # initialize last email time
 while True:
     # get the current date and time
     now = datetime.datetime.now()
@@ -40,6 +59,11 @@ while True:
     if len(contours) > 0:
         cv2.imwrite(new_file_name + ".jpg", frame2)
         #break
+        current_time = time.time()
+        if message_sent is not True and current_time - last_email_time >= 3600:
+            send_mail('Movement Detected')
+            message_sent = True
+            last_email_time = current_time
     
     # update the previous frame
     gray1 = gray2
