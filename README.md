@@ -6,9 +6,9 @@ Clone this repository to your local machine using
 ```sh
 git clone https://github.com/Protocol-Droids/Surveillance.git
 ```
-Install OpenCV2
+Install OpenCV2 and Matplotlib
 ```sh
-pip install opencv-python
+pip install opencv-python matplotlib
 ```
 
 Navigate to the directory where the script is located using the command line. <br/>
