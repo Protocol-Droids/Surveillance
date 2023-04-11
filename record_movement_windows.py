@@ -65,7 +65,7 @@ while True:
         #break
         current_time = time.time()
         if current_time - last_email_time >= 3600:
-            send_mail('Movement Detected')
+            send_mail('Movement Detected on windows')
             last_email_time = current_time
     
     # update the previous frame
