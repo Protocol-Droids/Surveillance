@@ -3,7 +3,7 @@ import shutil
 from datetime import datetime
 
 # Change the path to the directory where the files are located
-directory_path = "/Survelliance"
+directory_path = "/path/to/directory"
 
 # Get a list of all the files in the directory
 file_list = os.listdir(directory_path)
@@ -11,7 +11,9 @@ file_list = os.listdir(directory_path)
 # Loop through each file in the list
 for file_name in file_list:
     # Extract the date and hour from the file name
-    date_str, hour_str, *_ = file_name.split("_")
+    file_name_parts = file_name.split("_")
+    date_str = file_name_parts[0]
+    hour_str = file_name_parts[1]
 
     # Convert the date and hour strings to datetime objects
     date = datetime.strptime(date_str, "%Y-%m-%d")
