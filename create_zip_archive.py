@@ -12,8 +12,8 @@ def create_zip_archive():
     # create a new ZIP archive with maximum compression
     zip_file_name = 'images.zip'
     compression = zipfile.ZIP_DEFLATED
-    compression_opts = dict(level=9, method=zlib.DEFLATED)
-    with zipfile.ZipFile(zip_file_name, 'w', compression, compresslevel=9, compress_type=compression, **compression_opts) as zip_file:
+    compression_opts = dict(method=zlib.DEFLATED, compresslevel=9)
+    with zipfile.ZipFile(zip_file_name, 'w', compression, **compression_opts) as zip_file:
         # add each JPG file to the archive
         for jpg_file in jpg_files:
             zip_file.write(jpg_file)
