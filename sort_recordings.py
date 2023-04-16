@@ -3,7 +3,7 @@ import shutil
 from datetime import datetime
 
 # Change the path to the directory where the files are located
-directory_path = "/Surveillance"
+directory_path = "/path/to/directory"
 
 # Get a list of all the files in the directory
 file_list = os.listdir(directory_path)
@@ -12,7 +12,7 @@ file_list = os.listdir(directory_path)
 for file_name in file_list:
     try:
         # Extract the date and hour from the file name
-        file_name_parts = file_name.split("_")
+        file_name_parts = file_name.rsplit("_", 1)
         date_str = file_name_parts[0]
         hour_str = file_name_parts[1]
 
