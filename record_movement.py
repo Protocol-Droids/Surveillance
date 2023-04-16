@@ -11,6 +11,7 @@ cap = VideoCapture(0)
 _, frame1 = cap.read()
 gray1 = cvtColor(frame1, COLOR_BGR2GRAY)
 threshold_detect_motion=input("Enter threshold for motion detection: ")
+count = 0
 while True:
     # get the current date and time
     now = datetime.datetime.now()
@@ -31,6 +32,12 @@ while True:
     # wait for key press and exit if 'q' is pressed
     if waitKey(1) & 0xFF == ord('q'):
         break
+    
+    # Refresh comparison frame every 100 frame
+    count += 1
+    if count < 100:
+        count = 0
+        _, frame1 = cap.read()
 
 
 # release the camera and close the window
