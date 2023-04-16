@@ -12,17 +12,19 @@ file_list = os.listdir(directory_path)
 for file_name in file_list:
     try:
         # Extract the date and hour from the file name
-        file_name_parts = file_name.rsplit("_", 1)
+        filename_without_extension = file_name.rstrip(".jpg")
+        file_name_parts = filename_without_extension.rsplit("_", 1)
         date_str = file_name_parts[0]
-        hour_str = file_name_parts[1]
+        hour_str = file_name_parts[1] if len(file_name_parts) > 1 else ""
 
-        # Convert the date and hour strings to datetime objects
-        date = datetime.strptime(date_str, "%Y-%m-%d")
-        hour = datetime.strptime(hour_str, "%H-%M-%S-%f") if len(file_name_parts) > 1 else ""
+        # Split the date and time strings into their component parts
+        year, month, day = date_str.split("-")
+        hour, minute, second, microseconds = hour_str.split("-")
+        hour_string = str(hour)
 
         # Create the directory path for the day and hour
         day_path = os.path.join(directory_path, date_str)
-        hour_path = os.path.join(day_path, hour_str)
+        hour_path = os.path.join(day_path, hour_string)
 
         # Create the day and hour directories if they don't exist
         os.makedirs(hour_path, exist_ok=True)
