@@ -10,6 +10,7 @@ cap = VideoCapture(0)
 # initialize the first frame
 _, frame1 = cap.read()
 gray1 = cvtColor(frame1, COLOR_BGR2GRAY)
+threshold_detect_motion=input("Enter threshold for motion detection: ")
 while True:
     # get the current date and time
     now = datetime.datetime.now()
@@ -22,7 +23,7 @@ while True:
         break
 
     # detect motion
-    detect_motion(frame2, gray1, new_file_name, threshold_detect_motion=input("Enter threshold for motion detection: "))
+    detect_motion(frame2, gray1, new_file_name, threshold_detect_motion)
 
     # display the frame
     imshow('Preview', frame2)
