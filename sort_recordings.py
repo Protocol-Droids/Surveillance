@@ -18,7 +18,7 @@ for file_name in file_list:
 
         # Convert the date and hour strings to datetime objects
         date = datetime.strptime(date_str, "%Y-%m-%d")
-        hour = datetime.strptime(hour_str, "%H-%M-%S-%f")
+        hour = datetime.strptime(hour_str, "%H-%M-%S-%f") if len(file_name_parts) > 1 else ""
 
         # Create the directory path for the day and hour
         day_path = os.path.join(directory_path, date_str)
