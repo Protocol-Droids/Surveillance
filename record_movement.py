@@ -1,6 +1,8 @@
 from cv2 import VideoCapture, cvtColor, absdiff, threshold, getStructuringElement, dilate, findContours, MORPH_ELLIPSE, THRESH_BINARY, RETR_EXTERNAL, imwrite, imshow, waitKey, destroyAllWindows, CHAIN_APPROX_SIMPLE, COLOR_BGR2GRAY
 import datetime
 from detect_motion import detect_motion
+#from create_zip_archive import create_zip_archive
+
 
 # open the default camera (index 0)
 cap = VideoCapture(0)
@@ -8,7 +10,6 @@ cap = VideoCapture(0)
 # initialize the first frame
 _, frame1 = cap.read()
 gray1 = cvtColor(frame1, COLOR_BGR2GRAY)
-
 while True:
     # get the current date and time
     now = datetime.datetime.now()
@@ -29,6 +30,8 @@ while True:
     # wait for key press and exit if 'q' is pressed
     if waitKey(1) & 0xFF == ord('q'):
         break
+
+
 # release the camera and close the window
 cap.release()
 destroyAllWindows()
