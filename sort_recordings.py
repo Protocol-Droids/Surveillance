@@ -33,4 +33,4 @@ for file_name in file_list:
         shutil.move(file_path, new_file_path)
     except ValueError:
         # Skip files that do not match the expected format
-        print(f"Skipping file {file_name} because it does not match the expected format.")
+        print("Skipping file {} because it does not match the expected format.".format(file_name))
