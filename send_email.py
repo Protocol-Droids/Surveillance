@@ -16,3 +16,4 @@ def send_mail(message = 'This is a test email.', recipient_email = 'martin.arthu
         smtp.ehlo()
         smtp.login(sender_email, 'JabbaJabbaHei1990')
         smtp.sendmail(sender_email, recipient_email, msg.as_string())
+        smtp.quit()
