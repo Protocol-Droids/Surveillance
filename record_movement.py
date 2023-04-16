@@ -29,16 +29,19 @@ while True:
     # display the frame
     imshow('Preview', frame2)
 
-    # wait for key press and exit if 'q' is pressed
-    if waitKey(1) & 0xFF == ord('q'):
-        break
-    
     # Refresh comparison frame every 100 frame
     count += 1
     if count < 100:
         count = 0
         _, frame1 = cap.read()
+        gray1 = cvtColor(frame1, COLOR_BGR2GRAY)
 
+
+    # wait for key press and exit if 'q' is pressed
+    if waitKey(1) & 0xFF == ord('q'):
+        break
+    
+    
 
 # release the camera and close the window
 cap.release()
