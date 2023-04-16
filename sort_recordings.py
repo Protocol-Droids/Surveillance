@@ -5,8 +5,11 @@ from datetime import datetime
 # Change the path to the directory where the files are located
 directory_path = "/Surveillance"
 
-# Get a list of all the files in the directory
-file_list = os.listdir(directory_path)
+# Set the extensions of the files to be moved
+extensions = (".jpg", ".jpeg", ".mp4")
+
+# Get a list of all the files in the directory with the specified extensions
+file_list = [f for f in os.listdir(directory_path) if f.endswith(extensions)]
 
 # Loop through each file in the list
 for file_name in file_list:
@@ -34,3 +37,6 @@ for file_name in file_list:
     except ValueError:
         # Skip files that do not match the expected format
         print("Skipping file {} because it does not match the expected format.".format(file_name))
+    except shutil.Error as e:
+        # Skip files that already exist in the destination directory
+        print("Skipping file {} because it already exists in the destination directory.".format(file_name))
