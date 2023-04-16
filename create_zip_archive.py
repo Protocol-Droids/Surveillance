@@ -10,7 +10,7 @@ def create_zip_archive():
 
     # create a new ZIP archive with maximum compression
     zip_file_name = 'images.zip'
-    compression = zipfile.ZIP_LZMA
+    compression = zipfile.ZIP_BZIP2
     with zipfile.ZipFile(zip_file_name, 'w', compression) as zip_file:
         # add each JPG file to the archive
         for jpg_file in jpg_files:
