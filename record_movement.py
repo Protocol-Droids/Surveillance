@@ -2,7 +2,7 @@ from cv2 import VideoCapture, cvtColor, imshow, waitKey, destroyAllWindows, COLO
 import datetime
 from detect_motion import detect_motion
 #from create_zip_archive import create_zip_archive
-
+from sort_recordings import sort_if_more_then_max_jpg
 
 # open the default camera (index 0)
 cap = VideoCapture(0)
@@ -35,6 +35,7 @@ while True:
         count = 0
         _, frame1 = cap.read()
         gray1 = cvtColor(frame1, COLOR_BGR2GRAY)
+        sort_if_more_then_max_jpg()
 
 
     # wait for key press and exit if 'q' is pressed
