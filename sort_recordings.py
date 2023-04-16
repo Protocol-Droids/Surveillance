@@ -14,7 +14,7 @@ for file_name in file_list:
         # Extract the date and hour from the file name
         file_name_parts = file_name.split("_")
         date_str = file_name_parts[0]
-        hour_str = file_name_parts[1]
+        hour_str = file_name_parts[1] if len(file_name_parts) > 1 else ""
 
         # Convert the date and hour strings to datetime objects
         date = datetime.strptime(date_str, "%Y-%m-%d")
