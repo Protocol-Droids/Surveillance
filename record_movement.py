@@ -1,4 +1,4 @@
-from cv2 import VideoCapture, cvtColor, absdiff, threshold, getStructuringElement, dilate, findContours, MORPH_ELLIPSE, THRESH_BINARY, RETR_EXTERNAL, imwrite, imshow, waitKey, destroyAllWindows, CHAIN_APPROX_SIMPLE, COLOR_BGR2GRAY
+from cv2 import VideoCapture, cvtColor, imshow, waitKey, destroyAllWindows, COLOR_BGR2GRAY
 import datetime
 from detect_motion import detect_motion
 #from create_zip_archive import create_zip_archive
