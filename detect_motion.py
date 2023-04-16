@@ -23,8 +23,6 @@ def detect_motion(frame2, gray1, new_file_name):
         if len(contours) > 0:
             imwrite(new_file_name + ".jpg", frame2)
             #break
-            current_time = time.time()
-            print('Time diff email delay: ' + str(current_time - last_email_time))
     
         # update the previous frame
         gray1 = gray2
