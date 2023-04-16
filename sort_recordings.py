@@ -3,7 +3,7 @@ import shutil
 from datetime import datetime
 
 # Change the path to the directory where the files are located
-directory_path = "/path/to/directory"
+directory_path = "/Surveillance"
 
 # Get a list of all the files in the directory
 file_list = os.listdir(directory_path)
