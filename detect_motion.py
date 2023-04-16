@@ -2,7 +2,7 @@ import time
 from cv2 import cvtColor, absdiff, threshold, getStructuringElement, dilate, findContours, MORPH_ELLIPSE, THRESH_BINARY, RETR_EXTERNAL, imwrite, CHAIN_APPROX_SIMPLE, COLOR_BGR2GRAY
 
 
-def detect_motion(frame2, gray1, new_file_name):
+def detect_motion(frame2, gray1, new_file_name, threshold_detect_motion=150):
         # convert the frame to grayscale
         gray2 = cvtColor(frame2, COLOR_BGR2GRAY)
         
@@ -10,7 +10,7 @@ def detect_motion(frame2, gray1, new_file_name):
         frame_diff = absdiff(gray1, gray2)
         
         # apply thresholding to the frame difference
-        _, thresh = threshold(frame_diff, 150, 255, THRESH_BINARY)
+        _, thresh = threshold(frame_diff, threshold_detect_motion, 255, THRESH_BINARY)
         
         # dilate the thresholded image to fill in the gaps
         kernel = getStructuringElement(MORPH_ELLIPSE, (5, 5))

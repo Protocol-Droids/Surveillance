@@ -22,7 +22,7 @@ while True:
         break
 
     # detect motion
-    detect_motion(frame2, gray1, new_file_name)
+    detect_motion(frame2, gray1, new_file_name, threshold_detect_motion=input("Enter threshold for motion detection: "))
 
     # display the frame
     imshow('Preview', frame2)
