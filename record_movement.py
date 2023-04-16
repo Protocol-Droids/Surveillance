@@ -4,6 +4,7 @@ import time
 from send_email import send_mail
 
 def detect_motion(frame2, gray1):
+        global last_email_time
         # convert the frame to grayscale
         gray2 = cvtColor(frame2, COLOR_BGR2GRAY)
         
