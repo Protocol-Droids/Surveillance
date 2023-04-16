@@ -1,24 +1,8 @@
 from cv2 import VideoCapture, cvtColor, absdiff, threshold, getStructuringElement, dilate, findContours, MORPH_ELLIPSE, THRESH_BINARY, RETR_EXTERNAL, imwrite, imshow, waitKey, destroyAllWindows, CHAIN_APPROX_SIMPLE, COLOR_BGR2GRAY
 import datetime
 import time
-import smtplib
-from email.mime.text import MIMEText
-from email.utils import formataddr
+from send_email import send_mail
 
-def send_mail(message = 'This is a test email.', recipient_email = 'martin.arthur.andersen@gmail.com', subject = 'Email from bot'):
-    sender_email = 'bot@nettking.no'
-    sender_name = 'Nettking Surveillance Bot'
-    msg = MIMEText(message)
-    msg['From'] = formataddr((sender_name, sender_email))
-    msg['To'] = recipient_email
-    msg['Subject'] = subject
-
-    with smtplib.SMTP('smtp.proisp.no', 587) as smtp:
-        smtp.ehlo()
-        smtp.starttls()
-        smtp.ehlo()
-        smtp.login(sender_email, 'JabbaJabbaHei1990')
-        smtp.sendmail(sender_email, recipient_email, msg.as_string())
 
 # open the default camera (index 0)
 cap = VideoCapture(0)
@@ -27,6 +11,8 @@ cap = VideoCapture(0)
 _, frame1 = cap.read()
 gray1 = cvtColor(frame1, COLOR_BGR2GRAY)
 last_email_time = time.time() # initialize last email time
+email_delay = input("Enter delay in seconds between email warning: ")
+
 while True:
     # get the current date and time
     now = datetime.datetime.now()
@@ -59,7 +45,7 @@ while True:
         #break
         current_time = time.time()
         print('Time diff email delay: ' + str(current_time - last_email_time))
-        if current_time - last_email_time >= 3600:
+        if current_time - last_email_time >= email_delay:
             send_mail('Movement Detected')
             last_email_time = current_time
     
